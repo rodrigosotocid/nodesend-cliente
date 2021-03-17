@@ -38,7 +38,7 @@ export default function Home() {
             >Copiar Enlace</button>
           </>
         ) : (
-          <p>
+          <>
             {mensaje_archivo && <Alerta />}
             <div className="lg:flex md:shadow-lg p-5 bg-white rounded-lg py-10">
               <Dropzone />
@@ -54,7 +54,7 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-          </p>
+          </>
         )}
 
       </div>

@@ -1,23 +1,41 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react'
 import Link from 'next/link'
 import authContext from '../context/auth/authContext'
+import appContext from '../context/app/appContext'
+import { useRouter } from 'next/router'
 
 const Header = () => {
+
+  // Routing
+  const router = useRouter();
 
   // Extraer el Usuario autenticado del Storage
   const AuthContext = useContext(authContext);
   const { usuario, usuarioAutenticado, cerrarSesion } = AuthContext;
 
+  // Context de la aplicación
+  const AppContext = useContext(appContext);
+  const { limpiarState } = AppContext;
 
   useEffect(() => {
     usuarioAutenticado();
   }, [])
 
+  const indexRedireccion = () => {
+    router.push('/');
+    limpiarState();
+  }
+
   return (
     <header className="py-8 flex flex-col md:flex-row items-center justify-between">
-      <Link href="/">
-        <img src="logo.svg" alt="logo React NodeSend" className="w-64 mb-8 md:mb-0" />
-      </Link>
+
+      <img
+        src="/logo.svg"
+        alt="logo React NodeSend"
+        className="cursor-pointer w-64 mb-8 md:mb-0"
+        onClick={() => indexRedireccion()}
+      />
+
 
       <div>
         {
